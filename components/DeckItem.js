@@ -10,7 +10,10 @@ const DeckItem = ({ item }) => {
       title={item.title}
       badge={{
         value: `${item.cardCount} cards`,
-        containerStyle: { marginTop: 15, backgroundColor: blue }
+        containerStyle: {
+          marginVertical: 14,
+          backgroundColor: blue
+        }
       }}
     />
   );

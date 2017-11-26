@@ -28,7 +28,7 @@ class Decks extends Component {
 }
 
 const styles = StyleSheet.create({
-  deckList: { flex: 1, borderTopWidth: 0, borderBottomWidth: 0 }
+  deckList: { flex: 1, borderTopWidth: 1, borderBottomWidth: 0 }
 });
 
 export default Decks;
