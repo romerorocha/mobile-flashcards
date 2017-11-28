@@ -3,6 +3,9 @@ import { View, StyleSheet } from 'react-native';
 import { Text, FormLabel, FormInput, Button } from 'react-native-elements';
 import ValidationMessage from './ValidationMessage';
 import { purple } from '../utils/colors';
+import { saveDeckTitle } from '../utils/api';
+import { addDeck } from '../actions';
+import { connect } from 'react-redux';
 
 class NewDeck extends Component {
   state = {
@@ -39,10 +42,20 @@ class NewDeck extends Component {
     const { title } = this.state;
 
     if (title) {
+      this.props.addNewDeck(title);
+      saveDeckTitle(title);
       this.setState({ title: '', empty: false });
     }
   };
 }
+
+const mapDispatchToProps = dispatch => ({
+  addNewDeck(deck) {
+    dispatch(addDeck(deck));
+  }
+});
+
+export default connect(null, mapDispatchToProps)(NewDeck);
 
 const styles = StyleSheet.create({
   header: {
@@ -56,5 +69,3 @@ const styles = StyleSheet.create({
     marginTop: 20
   }
 });
-
-export default NewDeck;
