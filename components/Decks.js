@@ -16,6 +16,7 @@ class Decks extends Component {
 
   render() {
     const { decks } = this.props;
+
     return (
       <View style={{ flex: 1 }}>
         <Header
@@ -28,11 +29,13 @@ class Decks extends Component {
             data={decks}
             renderItem={({ item }) => (
               <ListItem
-                onPress={() => this.props.navigation.navigate('Deck')}
+                onPress={() =>
+                  this.props.navigation.navigate('Deck', { deck: item })
+                }
                 avatar={<Feather name="box" color={purple} size={50} />}
                 title={item.title}
                 badge={{
-                  value: `${item.cardCount} cards`,
+                  value: `${item.questions.length} cards`,
                   containerStyle: {
                     marginVertical: 14,
                     backgroundColor: blue
@@ -62,7 +65,7 @@ const mapStateToProps = state => ({
   decks: Object.keys(state)
     .map(key => ({
       title: state[key].title,
-      cardCount: state[key].questions.length
+      questions: state[key].questions
     }))
     .sort((a, b) => a.title.localeCompare(b.title))
 });
