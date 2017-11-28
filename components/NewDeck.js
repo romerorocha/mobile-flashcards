@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Text, FormLabel, FormInput, Button } from 'react-native-elements';
 import ValidationMessage from './ValidationMessage';
-import { purple } from '../utils/colors';
+import { purple, white } from '../utils/colors';
 import { saveDeckTitle } from '../utils/api';
 import { addDeck } from '../actions';
 import { connect } from 'react-redux';
@@ -17,7 +17,7 @@ class NewDeck extends Component {
     const { empty, title } = this.state;
 
     return (
-      <View>
+      <View style={styles.background}>
         <Text h4 style={styles.header}>
           Create new deck
         </Text>
@@ -49,15 +49,11 @@ class NewDeck extends Component {
   };
 }
 
-const mapDispatchToProps = dispatch => ({
-  addNewDeck(deck) {
-    dispatch(addDeck(deck));
-  }
-});
-
-export default connect(null, mapDispatchToProps)(NewDeck);
-
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    backgroundColor: white
+  },
   header: {
     alignSelf: 'center',
     marginTop: 20,
@@ -69,3 +65,11 @@ const styles = StyleSheet.create({
     marginTop: 20
   }
 });
+
+const mapDispatchToProps = dispatch => ({
+  addNewDeck(deck) {
+    dispatch(addDeck(deck));
+  }
+});
+
+export default connect(null, mapDispatchToProps)(NewDeck);

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, FlatList } from 'react-native';
-import { List } from 'react-native-elements';
-import DeckItem from './DeckItem';
+import { StyleSheet, FlatList, View } from 'react-native';
+import { List, ListItem, Header } from 'react-native-elements';
 import { getDecks } from '../utils/api';
 import { loadAllDecks } from '../actions';
 import { connect } from 'react-redux';
+import { Feather } from '@expo/vector-icons';
+import { blue, purple } from '../utils/colors';
 
 class Decks extends Component {
   componentDidMount() {
@@ -16,19 +17,45 @@ class Decks extends Component {
   render() {
     const { decks } = this.props;
     return (
-      <List containerStyle={styles.deckList}>
-        <FlatList
-          data={decks}
-          renderItem={DeckItem}
-          keyExtractor={item => item.title}
+      <View style={{ flex: 1 }}>
+        <Header
+          statusBarProps={{ barStyle: 'light-content' }}
+          centerComponent={{ text: 'FLASHCARDS', style: { color: '#fff' } }}
+          outerContainerStyles={{ backgroundColor: purple }}
         />
-      </List>
+        <List containerStyle={styles.deckList}>
+          <FlatList
+            data={decks}
+            renderItem={({ item }) => (
+              <ListItem
+                onPress={() => this.props.navigation.navigate('Deck')}
+                avatar={<Feather name="box" color={purple} size={50} />}
+                title={item.title}
+                badge={{
+                  value: `${item.cardCount} cards`,
+                  containerStyle: {
+                    marginVertical: 14,
+                    backgroundColor: blue
+                  }
+                }}
+              />
+            )}
+            navigate={this.props.navigation.navigate}
+            keyExtractor={item => item.title}
+          />
+        </List>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  deckList: { flex: 1, borderTopWidth: 1, borderBottomWidth: 0 }
+  deckList: {
+    flex: 1,
+    borderTopWidth: 0,
+    borderBottomWidth: 0,
+    marginTop: 0
+  }
 });
 
 const mapStateToProps = state => ({

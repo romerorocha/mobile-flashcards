@@ -4,20 +4,31 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from './reducers';
 import TabBar from './components/TabBar';
-import { Header } from 'react-native-elements';
-import { purple } from './utils/colors';
+import DeckEdit from './components/DeckEdit';
+import { purple, white } from './utils/colors';
+import { StackNavigator } from 'react-navigation';
+
+const MainNavigator = StackNavigator({
+  Home: {
+    screen: TabBar
+  },
+  Deck: {
+    screen: DeckEdit,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple
+      }
+    }
+  }
+});
 
 export default class App extends React.Component {
   render() {
     return (
       <Provider store={createStore(reducer)}>
         <View style={{ flex: 1 }}>
-          <Header
-            statusBarProps={{ barStyle: 'light-content' }}
-            centerComponent={{ text: 'FLASHCARDS', style: { color: '#fff' } }}
-            outerContainerStyles={{ backgroundColor: purple }}
-          />
-          <TabBar />
+          <MainNavigator />
         </View>
       </Provider>
     );
