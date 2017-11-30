@@ -19,3 +19,7 @@ export const saveDeckTitle = deck => {
     })
   );
 };
+
+export const addCardToDeck = deck => {
+  return AsyncStorage.mergeItem(FLASHCARDS_KEY, JSON.stringify({}));
+};

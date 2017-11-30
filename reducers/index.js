@@ -1,4 +1,4 @@
-import { ADD_DECK, LOAD_ALL_DECKS } from '../actions';
+import { ADD_DECK, UPDATE_DECK, LOAD_ALL_DECKS } from '../actions';
 
 const decks = (state = {}, action) => {
   switch (action.type) {
@@ -8,6 +8,14 @@ const decks = (state = {}, action) => {
         [action.deck]: {
           title: action.deck,
           questions: []
+        }
+      };
+    case UPDATE_DECK:
+      return {
+        ...state,
+        [action.key]: {
+          ...state,
+          questions: [...state, action.card]
         }
       };
     case LOAD_ALL_DECKS:

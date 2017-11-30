@@ -15,7 +15,7 @@ class Decks extends Component {
   }
 
   render() {
-    const { decks } = this.props;
+    const { decks, navigation } = this.props;
 
     return (
       <View style={{ flex: 1 }}>
@@ -29,9 +29,7 @@ class Decks extends Component {
             data={decks}
             renderItem={({ item }) => (
               <ListItem
-                onPress={() =>
-                  this.props.navigation.navigate('Deck', { deck: item })
-                }
+                onPress={() => navigation.navigate('DeckEdit', { deck: item })}
                 avatar={<Feather name="box" color={purple} size={50} />}
                 title={item.title}
                 badge={{
@@ -43,7 +41,6 @@ class Decks extends Component {
                 }}
               />
             )}
-            navigate={this.props.navigation.navigate}
             keyExtractor={item => item.title}
           />
         </List>

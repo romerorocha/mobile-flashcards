@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import reducer from './reducers';
 import TabBar from './components/TabBar';
 import DeckEdit from './components/DeckEdit';
+import AddCard from './components/AddCard';
 import { purple, white } from './utils/colors';
 import { StackNavigator } from 'react-navigation';
 
@@ -12,9 +13,20 @@ const MainNavigator = StackNavigator({
   Home: {
     screen: TabBar
   },
-  Deck: {
+  DeckEdit: {
     screen: DeckEdit,
     navigationOptions: {
+      title: 'Deck',
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple
+      }
+    }
+  },
+  AddCard: {
+    screen: AddCard,
+    navigationOptions: {
+      title: 'Add Card',
       headerTintColor: white,
       headerStyle: {
         backgroundColor: purple
