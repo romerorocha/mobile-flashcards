@@ -1,11 +1,10 @@
 import React from 'react';
 import { View } from 'react-native';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import reducer from './reducers';
-import TabBar from './components/TabBar';
+import configureStore from './configureStore';
 import DeckEdit from './components/DeckEdit';
 import AddCard from './components/AddCard';
+import TabBar from './components/TabBar';
 import { purple, white } from './utils/colors';
 import { StackNavigator } from 'react-navigation';
 
@@ -38,7 +37,7 @@ const MainNavigator = StackNavigator({
 export default class App extends React.Component {
   render() {
     return (
-      <Provider store={createStore(reducer)}>
+      <Provider store={configureStore()}>
         <View style={{ flex: 1 }}>
           <MainNavigator />
         </View>

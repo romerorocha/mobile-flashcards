@@ -13,9 +13,9 @@ const decks = (state = {}, action) => {
     case UPDATE_DECK:
       return {
         ...state,
-        [action.key]: {
-          ...state[action.key],
-          questions: [...state[action.key].questions, action.card]
+        [action.id]: {
+          ...state[action.id],
+          questions: [...state[action.id].questions, action.card]
         }
       };
     case LOAD_ALL_DECKS:

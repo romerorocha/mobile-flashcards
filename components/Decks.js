@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
 import { StyleSheet, FlatList, View } from 'react-native';
 import { List, ListItem, Header } from 'react-native-elements';
-import { getDecks } from '../utils/api';
-import { loadAllDecks } from '../actions';
+import { fetchDecks } from '../actions';
 import { connect } from 'react-redux';
 import { Feather } from '@expo/vector-icons';
 import { blue, purple } from '../utils/colors';
 
 class Decks extends Component {
   componentDidMount() {
-    getDecks().then(decks => {
-      this.props.loadDecks(decks);
-    });
+    this.props.fetchDecks();
   }
 
   render() {
     const { decks, navigation } = this.props;
+
     return (
       <View style={{ flex: 1 }}>
         <Header
@@ -71,8 +69,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadDecks(decks) {
-    dispatch(loadAllDecks(decks));
+  fetchDecks(decks) {
+    dispatch(fetchDecks(decks));
   }
 });
 

@@ -9,13 +9,13 @@ import {
 } from 'react-native-elements';
 import ValidationMessage from './ValidationMessage';
 import { purple } from '../utils/colors';
-import { saveDeckTitle } from '../utils/api';
+import { saveDeck } from '../utils/api';
 import { addDeck } from '../actions';
 import { connect } from 'react-redux';
 
 class NewDeck extends Component {
   state = {
-    title: null
+    title: ''
   };
 
   render() {
@@ -28,21 +28,20 @@ class NewDeck extends Component {
           centerComponent={{ text: 'FLASHCARDS', style: { color: '#fff' } }}
           outerContainerStyles={{ backgroundColor: purple }}
         />
-        <Text h4 style={styles.header}>
+        <Text h4 style={styles.text}>
           Create new deck
         </Text>
         <FormLabel>Title</FormLabel>
         <FormInput
           value={title}
           onChangeText={title => this.setState({ title })}
-          autoFocus={true}
         />
-        <ValidationMessage empty={title === ''} />
+        <ValidationMessage empty={!title} />
         <Button
           title="Submit"
           buttonStyle={styles.submit}
-          onPress={this.handleSubmit}
           backgroundColor={purple}
+          onPress={this.handleSubmit}
         />
       </View>
     );
@@ -50,23 +49,19 @@ class NewDeck extends Component {
 
   handleSubmit = () => {
     const { title } = this.state;
+    const { addNewDeck, navigation } = this.props;
 
-    if (!title) {
+    if (title) {
       this.setState({ title: '' });
-      return;
+      addNewDeck(title);
+      saveDeck(title);
+      navigation.navigate('DeckEdit', { title });
     }
-
-    this.props.addNewDeck(title);
-    saveDeckTitle(title);
-
-    this.setState({ title: '', empty: false });
-
-    this.props.navigation.navigate('DeckEdit', { title });
   };
 }
 
 const styles = StyleSheet.create({
-  header: {
+  text: {
     alignSelf: 'center',
     marginTop: 20,
     marginBottom: 50,

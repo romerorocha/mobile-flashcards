@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { FormLabel, FormInput, Button } from 'react-native-elements';
 import ValidationMessage from './ValidationMessage';
 import { purple } from '../utils/colors';
-import { updateDeck } from '../actions';
+import { addCardToDeck } from '../actions';
 import { connect } from 'react-redux';
 
 class AddCard extends Component {
@@ -27,7 +27,6 @@ class AddCard extends Component {
         <FormLabel>Answer</FormLabel>
         <FormInput
           onChangeText={text => this.setState({ answer: text })}
-          autoFocus={true}
           value={answer}
         />
         <ValidationMessage empty={answer === ''} />
@@ -43,15 +42,18 @@ class AddCard extends Component {
 
   addCard = () => {
     const { question, answer } = this.state;
+    const { addCardToDeck, navigation } = this.props;
+
+    const { title } = navigation.state.params.deck;
     const card = { question, answer };
-    const { title } = this.props.navigation.state.params.deck;
-    this.props.updateDeck(title, card);
+
+    addCardToDeck(title, card);
   };
 }
 
 const mapDispatchToProps = dispatch => ({
-  updateDeck(deck, card) {
-    dispatch(updateDeck(deck, card));
+  addCardToDeck(title, card) {
+    dispatch(addCardToDeck(title, card));
   }
 });
 

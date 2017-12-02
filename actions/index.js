@@ -1,19 +1,36 @@
+import * as AsyncStorage from '../utils/api';
+
 export const ADD_DECK = 'ADD_DECK';
 export const UPDATE_DECK = 'UPDATE_DECK';
 export const LOAD_ALL_DECKS = 'LOAD_ALL_DECKS';
 
-export const addDeck = deck => ({
+const addDeck = deck => ({
   type: ADD_DECK,
   deck
 });
 
-export const loadAllDecks = decks => ({
+const loadAllDecks = decks => ({
   type: LOAD_ALL_DECKS,
   decks
 });
 
-export const updateDeck = (key, card) => ({
+const updateDeck = (id, card) => ({
   type: UPDATE_DECK,
-  key,
+  id,
   card
 });
+
+export const addNewDeck = title => async dispatch => {
+  await AsyncStorage.saveDeck(title);
+  dispatch(addDeck(title));
+};
+
+export const fetchDecks = () => async dispatch => {
+  const decks = await AsyncStorage.getDecks();
+  dispatch(loadAllDecks(decks));
+};
+
+export const addCardToDeck = (id, card) => async dispatch => {
+  await AsyncStorage.addCardToDeck(id, card);
+  dispatch(updateDeck(id, card));
+};
