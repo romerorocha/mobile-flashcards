@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Text, Button } from 'react-native-elements';
 import { purple, lightPurp } from '../utils/colors';
+import { connect } from 'react-redux';
 
 class DeckEdit extends Component {
   render() {
-    const { navigation } = this.props;
-    const { deck } = navigation.state.params;
+    const { deck, navigation } = this.props;
 
     return (
       <View style={styles.background}>
@@ -43,4 +43,8 @@ const styles = StyleSheet.create({
   }
 });
 
-export default DeckEdit;
+const mapStateToProps = (state, ownProps) => ({
+  deck: state[ownProps.navigation.state.params.title]
+});
+
+export default connect(mapStateToProps)(DeckEdit);

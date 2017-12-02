@@ -58,12 +58,10 @@ class NewDeck extends Component {
 
     this.props.addNewDeck(title);
     saveDeckTitle(title);
+
     this.setState({ title: '', empty: false });
 
-    //verificar lógica de passagem de dados
-    this.props.navigation.navigate('DeckEdit', {
-      deck: { title, questions: [] }
-    });
+    this.props.navigation.navigate('DeckEdit', { title });
   };
 }
 

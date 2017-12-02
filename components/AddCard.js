@@ -3,6 +3,8 @@ import { View } from 'react-native';
 import { FormLabel, FormInput, Button } from 'react-native-elements';
 import ValidationMessage from './ValidationMessage';
 import { purple } from '../utils/colors';
+import { updateDeck } from '../actions';
+import { connect } from 'react-redux';
 
 class AddCard extends Component {
   state = {
@@ -33,10 +35,24 @@ class AddCard extends Component {
           title="Submit"
           buttonStyle={{ marginTop: 20 }}
           backgroundColor={purple}
+          onPress={this.addCard}
         />
       </View>
     );
   }
+
+  addCard = () => {
+    const { question, answer } = this.state;
+    const card = { question, answer };
+    const { title } = this.props.navigation.state.params.deck;
+    this.props.updateDeck(title, card);
+  };
 }
 
-export default AddCard;
+const mapDispatchToProps = dispatch => ({
+  updateDeck(deck, card) {
+    dispatch(updateDeck(deck, card));
+  }
+});
+
+export default connect(null, mapDispatchToProps)(AddCard);

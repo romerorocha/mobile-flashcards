@@ -16,7 +16,6 @@ class Decks extends Component {
 
   render() {
     const { decks, navigation } = this.props;
-
     return (
       <View style={{ flex: 1 }}>
         <Header
@@ -29,7 +28,9 @@ class Decks extends Component {
             data={decks}
             renderItem={({ item }) => (
               <ListItem
-                onPress={() => navigation.navigate('DeckEdit', { deck: item })}
+                onPress={() =>
+                  navigation.navigate('DeckEdit', { title: item.title })
+                }
                 avatar={<Feather name="box" color={purple} size={50} />}
                 title={item.title}
                 badge={{
@@ -59,12 +60,14 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  decks: Object.keys(state)
-    .map(key => ({
-      title: state[key].title,
-      questions: state[key].questions
-    }))
-    .sort((a, b) => a.title.localeCompare(b.title))
+  decks: state
+    ? Object.keys(state)
+        .map(key => ({
+          title: state[key].title,
+          questions: state[key].questions
+        }))
+        .sort((a, b) => a.title.localeCompare(b.title))
+    : []
 });
 
 const mapDispatchToProps = dispatch => ({
