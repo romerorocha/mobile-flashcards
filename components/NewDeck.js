@@ -9,8 +9,7 @@ import {
 } from 'react-native-elements';
 import ValidationMessage from './ValidationMessage';
 import { purple } from '../utils/colors';
-import { saveDeck } from '../utils/api';
-import { addDeck } from '../actions';
+import { addNewDeck } from '../actions';
 import { connect } from 'react-redux';
 
 class NewDeck extends Component {
@@ -52,9 +51,8 @@ class NewDeck extends Component {
     const { addNewDeck, navigation } = this.props;
 
     if (title) {
-      this.setState({ title: '' });
       addNewDeck(title);
-      saveDeck(title);
+      this.setState({ title: '' });
       navigation.navigate('DeckEdit', { title });
     }
   };
@@ -75,7 +73,7 @@ const styles = StyleSheet.create({
 
 const mapDispatchToProps = dispatch => ({
   addNewDeck(deck) {
-    dispatch(addDeck(deck));
+    dispatch(addNewDeck(deck));
   }
 });
 

@@ -8,7 +8,7 @@ class DeckEdit extends Component {
   render() {
     const { deck, navigation } = this.props;
 
-    return (
+    return deck ? (
       <View style={styles.background}>
         <View style={styles.text}>
           <Text h2>{deck.title}</Text>
@@ -27,6 +27,8 @@ class DeckEdit extends Component {
           />
         </View>
       </View>
+    ) : (
+      false
     );
   }
 }
