@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { FormLabel, FormInput, Button } from 'react-native-elements';
 import ValidationMessage from './ValidationMessage';
 import { purple } from '../utils/colors';
@@ -8,8 +8,8 @@ import { connect } from 'react-redux';
 
 class AddCard extends Component {
   state = {
-    question: null,
-    answer: null
+    question: '',
+    answer: ''
   };
 
   render() {
@@ -17,22 +17,22 @@ class AddCard extends Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <FormLabel>Question</FormLabel>
+        <FormLabel containerStyle={styles.label}>Question</FormLabel>
         <FormInput
+          value={question}
           onChangeText={text => this.setState({ question: text })}
           autoFocus={true}
-          value={question}
         />
         <ValidationMessage empty={question === ''} />
-        <FormLabel>Answer</FormLabel>
+        <FormLabel containerStyle={styles.label}>Answer</FormLabel>
         <FormInput
-          onChangeText={text => this.setState({ answer: text })}
           value={answer}
+          onChangeText={text => this.setState({ answer: text })}
         />
         <ValidationMessage empty={answer === ''} />
         <Button
           title="Submit"
-          buttonStyle={{ marginTop: 20 }}
+          buttonStyle={{ marginTop: 50 }}
           backgroundColor={purple}
           onPress={this.addCard}
         />
@@ -41,15 +41,22 @@ class AddCard extends Component {
   }
 
   addCard = () => {
-    const { question, answer } = this.state;
     const { addCardToDeck, navigation } = this.props;
-
     const { title } = navigation.state.params.deck;
-    const card = { question, answer };
+    const { question, answer } = this.state;
 
-    addCardToDeck(title, card);
+    if (question && answer) {
+      addCardToDeck(title, { question, answer });
+      navigation.goBack();
+    }
   };
 }
+
+const styles = StyleSheet.create({
+  label: {
+    marginTop: 30
+  }
+});
 
 const mapDispatchToProps = dispatch => ({
   addCardToDeck(title, card) {

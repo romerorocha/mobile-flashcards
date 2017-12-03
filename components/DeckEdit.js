@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state, ownProps) => ({
-  deck: state[ownProps.navigation.state.params.title]
+  deck: state ? state[ownProps.navigation.state.params.title] : null
 });
 
 export default connect(mapStateToProps)(DeckEdit);
