@@ -24,6 +24,8 @@ class DeckEdit extends Component {
             title="Start Quiz"
             backgroundColor={lightPurp}
             style={{ marginTop: 10 }}
+            disabled={deck.questions.length < 1}
+            onPress={() => navigation.navigate('Quiz', { deck })}
           />
         </View>
       </View>
