@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormValidationMessage } from 'react-native-elements';
-import { purple } from '../utils/colors';
+import { purple } from '../../utils/colors';
 const ValidationMessage = ({ empty }) => {
   return (
     empty && (

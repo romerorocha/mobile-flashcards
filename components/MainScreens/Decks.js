@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { StyleSheet, FlatList, View } from 'react-native';
-import { List, ListItem, Header } from 'react-native-elements';
-import { fetchDecks } from '../actions';
+import { List, ListItem } from 'react-native-elements';
+import { fetchDecks } from '../../actions';
 import { connect } from 'react-redux';
 import { Feather } from '@expo/vector-icons';
-import { blue, purple } from '../utils/colors';
+import { blue, purple } from '../../utils/colors';
 
 class Decks extends Component {
   componentDidMount() {
@@ -16,11 +16,6 @@ class Decks extends Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <Header
-          statusBarProps={{ barStyle: 'light-content' }}
-          centerComponent={{ text: 'FLASHCARDS', style: { color: '#fff' } }}
-          outerContainerStyles={{ backgroundColor: purple }}
-        />
         <List containerStyle={styles.deckList}>
           <FlatList
             data={decks}

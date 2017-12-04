@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { Text, Card, Button } from 'react-native-elements';
-import { lightPurp, purple, blue, gray } from '../utils/colors';
+import { lightPurp, purple, blue } from '../../utils/colors';
 
 class Quiz extends Component {
   state = {

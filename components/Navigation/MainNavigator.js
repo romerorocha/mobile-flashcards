@@ -1,9 +1,9 @@
 import { StackNavigator } from 'react-navigation';
-import DeckEdit from './DeckEdit';
-import AddCard from './AddCard';
-import Quiz from './Quiz';
+import DeckEdit from '../Screens/DeckEdit';
+import AddCard from '../Screens//AddCard';
+import Quiz from '../Screens//Quiz';
 import TabBar from './TabBar';
-import { purple, white } from '../utils/colors';
+import { purple, white } from '../../utils/colors';
 
 const MainNavigator = StackNavigator({
   Home: {

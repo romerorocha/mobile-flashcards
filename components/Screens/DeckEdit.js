@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Text, Button } from 'react-native-elements';
-import { purple, lightPurp } from '../utils/colors';
+import { purple, lightPurp } from '../../utils/colors';
 import { connect } from 'react-redux';
 
 class DeckEdit extends Component {

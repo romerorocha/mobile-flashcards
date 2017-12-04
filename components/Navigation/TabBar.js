@@ -1,9 +1,9 @@
 import React from 'react';
-import { purple, white } from '../utils/colors';
+import { purple, white } from '../../utils/colors';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { TabNavigator } from 'react-navigation';
-import Decks from './Decks';
-import NewDeck from './NewDeck';
+import Decks from '../MainScreens/Decks';
+import NewDeck from '../MainScreens/NewDeck';
 
 const TabBar = TabNavigator(
   {
@@ -32,7 +32,11 @@ const TabBar = TabNavigator(
   },
   {
     navigationOptions: {
-      header: null
+      title: 'Flashcards',
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple
+      }
     },
     tabBarOptions: {
       activeTintColor: purple,

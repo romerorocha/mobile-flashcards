@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
-import {
-  Text,
-  FormLabel,
-  FormInput,
-  Button,
-  Header
-} from 'react-native-elements';
-import ValidationMessage from './ValidationMessage';
-import { purple } from '../utils/colors';
-import { addNewDeck } from '../actions';
+import { Text, FormLabel, FormInput, Button } from 'react-native-elements';
+import ValidationMessage from '../Util/ValidationMessage';
+import { purple } from '../../utils/colors';
+import { addNewDeck } from '../../actions';
 import { connect } from 'react-redux';
 
 class NewDeck extends Component {
@@ -22,11 +16,6 @@ class NewDeck extends Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <Header
-          statusBarProps={{ barStyle: 'light-content' }}
-          centerComponent={{ text: 'FLASHCARDS', style: { color: '#fff' } }}
-          outerContainerStyles={{ backgroundColor: purple }}
-        />
         <Text h4 style={styles.text}>
           Create new deck
         </Text>
