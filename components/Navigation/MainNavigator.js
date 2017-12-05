@@ -5,40 +5,41 @@ import Quiz from '../Screens//Quiz';
 import TabBar from './TabBar';
 import { purple, white } from '../../utils/colors';
 
-const MainNavigator = StackNavigator({
-  Home: {
-    screen: TabBar
-  },
-  DeckEdit: {
-    screen: DeckEdit,
-    navigationOptions: {
-      title: 'Deck',
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: purple
+const MainNavigator = StackNavigator(
+  {
+    Home: {
+      screen: TabBar,
+      navigationOptions: {
+        title: 'Flashcards'
+      }
+    },
+    DeckEdit: {
+      screen: DeckEdit,
+      navigationOptions: {
+        title: 'Deck'
+      }
+    },
+    AddCard: {
+      screen: AddCard,
+      navigationOptions: {
+        title: 'Add Card'
+      }
+    },
+    Quiz: {
+      screen: Quiz,
+      navigationOptions: {
+        title: 'Quiz'
       }
     }
   },
-  AddCard: {
-    screen: AddCard,
+  {
     navigationOptions: {
-      title: 'Add Card',
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: purple
-      }
-    }
-  },
-  Quiz: {
-    screen: Quiz,
-    navigationOptions: {
-      title: 'Quiz',
       headerTintColor: white,
       headerStyle: {
         backgroundColor: purple
       }
     }
   }
-});
+);
 
 export default MainNavigator;

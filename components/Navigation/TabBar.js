@@ -2,13 +2,13 @@ import React from 'react';
 import { purple, white } from '../../utils/colors';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { TabNavigator } from 'react-navigation';
-import Decks from '../MainScreens/Decks';
+import DeckList from '../MainScreens/DeckList';
 import NewDeck from '../MainScreens/NewDeck';
 
 const TabBar = TabNavigator(
   {
     Decks: {
-      screen: Decks,
+      screen: DeckList,
       navigationOptions: {
         tabBarLabel: 'Decks',
         tabBarIcon: ({ tintColor }) => (
@@ -31,13 +31,6 @@ const TabBar = TabNavigator(
     }
   },
   {
-    navigationOptions: {
-      title: 'Flashcards',
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: purple
-      }
-    },
     tabBarOptions: {
       activeTintColor: purple,
       style: {

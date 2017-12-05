@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Text, FormLabel, FormInput, Button } from 'react-native-elements';
-import ValidationMessage from '../Util/ValidationMessage';
-import { purple } from '../../utils/colors';
-import { addNewDeck } from '../../actions';
 import { connect } from 'react-redux';
+import { addNewDeck } from '../../actions';
+import { Text, FormLabel, FormInput, Button } from 'react-native-elements';
+import { purple } from '../../utils/colors';
+import ValidationMessage from '../Util/ValidationMessage';
 
 class NewDeck extends Component {
   state = {

@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { StyleSheet, FlatList, View } from 'react-native';
-import { List, ListItem } from 'react-native-elements';
+import { List } from 'react-native-elements';
 import { fetchDecks } from '../../actions';
 import { connect } from 'react-redux';
-import { Feather } from '@expo/vector-icons';
-import { blue, purple } from '../../utils/colors';
+import Deck from './Deck';
 
-class Decks extends Component {
+class DeckList extends Component {
   componentDidMount() {
     this.props.fetchDecks();
   }
@@ -20,20 +19,7 @@ class Decks extends Component {
           <FlatList
             data={decks}
             renderItem={({ item }) => (
-              <ListItem
-                onPress={() =>
-                  navigation.navigate('DeckEdit', { title: item.title })
-                }
-                avatar={<Feather name="box" color={purple} size={50} />}
-                title={item.title}
-                badge={{
-                  value: `${item.questions.length} cards`,
-                  containerStyle: {
-                    marginVertical: 14,
-                    backgroundColor: blue
-                  }
-                }}
-              />
+              <Deck item={item} navigation={navigation} />
             )}
             keyExtractor={item => item.title}
           />
@@ -69,4 +55,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Decks);
+export default connect(mapStateToProps, mapDispatchToProps)(DeckList);
