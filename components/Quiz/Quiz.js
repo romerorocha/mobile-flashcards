@@ -14,9 +14,21 @@ class Quiz extends Component {
     this.setState({ showAnswer: !this.state.showAnswer });
   };
 
+  setScore = value => {
+    this.setState(state => ({
+      score: state.score + value,
+      currentIndex: state.currentIndex + 1,
+      showAnswer: false
+    }));
+  };
+
   render() {
     const { questions } = this.props.navigation.state.params.deck;
     const { currentIndex, score, showAnswer } = this.state;
+
+    if (currentIndex === questions.length) {
+      return false;
+    }
 
     const currentQuestion = questions[currentIndex];
 
@@ -54,12 +66,16 @@ class Quiz extends Component {
             title="I'm a genius"
             backgroundColor={purple}
             icon={{ name: 'thumbs-up', type: 'feather' }}
+            disabled={!showAnswer}
+            onPress={() => this.setScore(1)}
           />
           <Button
             title="I'm a dumbass"
             backgroundColor={lightPurp}
             buttonStyle={{ marginTop: 5 }}
             icon={{ name: 'thumbs-down', type: 'feather' }}
+            disabled={!showAnswer}
+            onPress={() => this.setScore(-1)}
           />
         </View>
       </View>
