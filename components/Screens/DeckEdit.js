@@ -7,12 +7,17 @@ import { connect } from 'react-redux';
 class DeckEdit extends Component {
   render() {
     const { deck, navigation } = this.props;
+    const cardCount = deck.questions.length;
 
     return deck ? (
-      <View style={styles.background}>
-        <View style={styles.text}>
-          <Text h2>{deck.title}</Text>
-          <Text>{deck.questions.length} cards</Text>
+      <View style={{ flex: 1 }}>
+        <View style={styles.title}>
+          <Text h2 style={styles.text}>
+            {deck.title}
+          </Text>
+          <Text style={styles.text}>
+            {cardCount} {cardCount === 1 ? 'card' : 'cards'}
+          </Text>
         </View>
         <View style={{ flex: 1 }}>
           <Button
@@ -23,7 +28,7 @@ class DeckEdit extends Component {
           <Button
             title="Start Quiz"
             backgroundColor={lightPurp}
-            style={{ marginTop: 10 }}
+            style={{ marginTop: 5 }}
             disabled={deck.questions.length < 1}
             onPress={() => navigation.navigate('Quiz', { deck })}
           />
@@ -36,14 +41,13 @@ class DeckEdit extends Component {
 }
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    justifyContent: 'center'
-  },
-  text: {
+  title: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  text: {
+    color: purple
   }
 });
 
