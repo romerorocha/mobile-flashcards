@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { addNewDeck } from '../../actions';
 import { Text, FormLabel, FormInput, Button } from 'react-native-elements';
-import { purple } from '../../utils/colors';
+import { darkBlue } from '../../utils/colors';
 import ValidationMessage from '../Util/ValidationMessage';
 
 class NewDeck extends Component {
@@ -28,7 +28,7 @@ class NewDeck extends Component {
         <Button
           title="Submit"
           buttonStyle={styles.submit}
-          backgroundColor={purple}
+          backgroundColor={darkBlue}
           onPress={this.handleSubmit}
         />
       </View>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 50,
     fontWeight: 'bold',
-    color: purple
+    color: darkBlue
   },
   submit: {
     marginTop: 20

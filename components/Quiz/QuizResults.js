@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Button, Text } from 'react-native-elements';
-import { purple, lightPurp } from '../../utils/colors';
+import { darkBlue, lightBlue } from '../../utils/colors';
 import ResultImage from './ResultImage';
 
 const QuizResults = ({ score, questionsCount, reset }) => {
@@ -21,12 +21,12 @@ const QuizResults = ({ score, questionsCount, reset }) => {
       </View>
       <View>
         <Button
-          backgroundColor={lightPurp}
+          backgroundColor={lightBlue}
           title="Restart Quiz"
           onPress={reset}
         />
         <Button
-          backgroundColor={purple}
+          backgroundColor={darkBlue}
           buttonStyle={styles.button}
           title="Back to Deck"
         />
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   text: {
-    color: purple,
+    color: darkBlue,
     marginTop: 10,
     fontWeight: 'bold'
   },

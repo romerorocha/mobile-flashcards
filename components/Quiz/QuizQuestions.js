@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { Text, Card, Button } from 'react-native-elements';
-import { purple, blue, lightPurp } from '../../utils/colors';
+import { darkBlue, lightBlue } from '../../utils/colors';
 
 class QuizQuestions extends Component {
   state = {
@@ -55,14 +55,14 @@ class QuizQuestions extends Component {
         <View>
           <Button
             title="I'm a genius"
-            backgroundColor={purple}
+            backgroundColor={darkBlue}
             icon={{ name: 'thumbs-up', type: 'feather' }}
             disabled={!showAnswer}
             onPress={() => this.setScore(1)}
           />
           <Button
             title="I'm a dumbass"
-            backgroundColor={lightPurp}
+            backgroundColor={lightBlue}
             buttonStyle={{ marginTop: 5 }}
             icon={{ name: 'thumbs-down', type: 'feather' }}
             disabled={!showAnswer}
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   showButton: {
-    color: blue
+    color: lightBlue
   }
 });
 

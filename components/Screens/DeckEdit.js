@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Text, Button } from 'react-native-elements';
-import { purple, lightPurp } from '../../utils/colors';
+import { darkBlue, lightBlue } from '../../utils/colors';
 import { connect } from 'react-redux';
 
 class DeckEdit extends Component {
@@ -22,12 +22,12 @@ class DeckEdit extends Component {
         <View style={{ flex: 1 }}>
           <Button
             title="Add Card"
-            backgroundColor={purple}
+            backgroundColor={darkBlue}
             onPress={() => navigation.navigate('AddCard', { deck })}
           />
           <Button
             title="Start Quiz"
-            backgroundColor={lightPurp}
+            backgroundColor={lightBlue}
             style={{ marginTop: 5 }}
             disabled={deck.questions.length < 1}
             onPress={() => navigation.navigate('Quiz', { deck })}
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   text: {
-    color: purple
+    color: darkBlue
   }
 });
 

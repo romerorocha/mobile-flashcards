@@ -1,5 +1,5 @@
 import React from 'react';
-import { purple, white } from '../../utils/colors';
+import { darkBlue, white } from '../../utils/colors';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { TabNavigator } from 'react-navigation';
 import DeckList from '../MainScreens/DeckList';
@@ -32,7 +32,7 @@ const TabBar = TabNavigator(
   },
   {
     tabBarOptions: {
-      activeTintColor: purple,
+      activeTintColor: darkBlue,
       style: {
         height: 56,
         padding: 5,

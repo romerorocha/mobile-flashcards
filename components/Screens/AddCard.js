@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { FormLabel, FormInput, Button } from 'react-native-elements';
 import ValidationMessage from '../Util/ValidationMessage';
-import { purple } from '../../utils/colors';
+import { darkBlue } from '../../utils/colors';
 import { addCardToDeck } from '../../actions';
 import { connect } from 'react-redux';
 
@@ -33,7 +33,7 @@ class AddCard extends Component {
         <Button
           title="Submit"
           buttonStyle={{ marginTop: 50 }}
-          backgroundColor={purple}
+          backgroundColor={darkBlue}
           onPress={this.addCard}
         />
       </View>

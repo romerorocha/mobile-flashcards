@@ -3,7 +3,7 @@ import DeckEdit from '../Screens/DeckEdit';
 import AddCard from '../Screens/AddCard';
 import Quiz from '../Quiz/Quiz';
 import TabBar from './TabBar';
-import { purple, white } from '../../utils/colors';
+import { darkBlue, white } from '../../utils/colors';
 
 const MainNavigator = StackNavigator(
   {
@@ -36,7 +36,7 @@ const MainNavigator = StackNavigator(
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: purple
+        backgroundColor: darkBlue
       }
     }
   }
