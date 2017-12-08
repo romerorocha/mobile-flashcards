@@ -4,9 +4,10 @@ export const ADD_DECK = 'ADD_DECK';
 export const UPDATE_DECK = 'UPDATE_DECK';
 export const LOAD_ALL_DECKS = 'LOAD_ALL_DECKS';
 
-const addDeck = deck => ({
+const addDeck = (deck, icon) => ({
   type: ADD_DECK,
-  deck
+  deck,
+  icon
 });
 
 const loadAllDecks = decks => ({
@@ -20,9 +21,9 @@ const updateDeck = (id, card) => ({
   card
 });
 
-export const addNewDeck = title => async dispatch => {
-  await AsyncStorage.saveDeck(title);
-  dispatch(addDeck(title));
+export const addNewDeck = (title, icon) => async dispatch => {
+  await AsyncStorage.saveDeck(title, icon);
+  dispatch(addDeck(title, icon));
 };
 
 export const fetchDecks = () => async dispatch => {

@@ -7,12 +7,13 @@ export const getDecks = async () => {
   return JSON.parse(results);
 };
 
-export const saveDeck = async deck => {
+export const saveDeck = async (deck, icon) => {
   AsyncStorage.mergeItem(
     FLASHCARDS_KEY,
     JSON.stringify({
       [deck]: {
         title: deck,
+        icon: icon,
         questions: []
       }
     })

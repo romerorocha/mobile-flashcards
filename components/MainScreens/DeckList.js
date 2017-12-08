@@ -43,7 +43,8 @@ const mapStateToProps = state => ({
     ? Object.keys(state)
         .map(key => ({
           title: state[key].title,
-          questions: state[key].questions
+          questions: state[key].questions,
+          icon: state[key].icon
         }))
         .sort((a, b) => a.title.localeCompare(b.title))
     : []

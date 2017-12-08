@@ -7,6 +7,7 @@ const decks = (state = {}, action) => {
         ...state,
         [action.deck]: {
           title: action.deck,
+          icon: action.icon,
           questions: []
         }
       };

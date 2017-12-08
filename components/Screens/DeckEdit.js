@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 class DeckEdit extends Component {
   render() {
     const { deck, navigation } = this.props;
-    const cardCount = deck.questions.length;
+
+    const cardCount = deck ? deck.questions.length : 0;
 
     return deck ? (
       <View style={{ flex: 1 }}>
@@ -29,7 +30,7 @@ class DeckEdit extends Component {
             title="Start Quiz"
             backgroundColor={lightBlue}
             style={{ marginTop: 5 }}
-            disabled={deck.questions.length < 1}
+            disabled={cardCount < 1}
             onPress={() => navigation.navigate('Quiz', { deck })}
           />
         </View>
