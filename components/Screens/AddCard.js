@@ -17,16 +17,22 @@ class AddCard extends Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <FormLabel containerStyle={styles.label}>Question</FormLabel>
+        <FormLabel containerStyle={styles.label}>
+          Question ({50 - question.length})
+        </FormLabel>
         <FormInput
           value={question}
+          maxLength={50}
           onChangeText={text => this.setState({ question: text })}
           autoFocus={true}
         />
         <ValidationMessage empty={question === ''} />
-        <FormLabel containerStyle={styles.label}>Answer</FormLabel>
+        <FormLabel containerStyle={styles.label}>
+          Answer ({50 - answer.length})
+        </FormLabel>
         <FormInput
           value={answer}
+          maxLength={50}
           onChangeText={text => this.setState({ answer: text })}
         />
         <ValidationMessage empty={answer === ''} />

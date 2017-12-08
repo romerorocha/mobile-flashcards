@@ -39,15 +39,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  decks: state
-    ? Object.keys(state)
-        .map(key => ({
-          title: state[key].title,
-          questions: state[key].questions,
-          icon: state[key].icon
-        }))
-        .sort((a, b) => a.title.localeCompare(b.title))
-    : []
+  decks: state ? getSortedList(state) : []
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -55,5 +47,15 @@ const mapDispatchToProps = dispatch => ({
     dispatch(fetchDecks(decks));
   }
 });
+
+const getSortedList = state => {
+  return Object.keys(state)
+    .map(key => ({
+      title: state[key].title,
+      questions: state[key].questions,
+      icon: state[key].icon
+    }))
+    .sort((a, b) => a.title.localeCompare(b.title));
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeckList);

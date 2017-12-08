@@ -53,9 +53,12 @@ class NewDeck extends Component {
         <Text h4 style={styles.text}>
           Create new deck
         </Text>
-        <FormLabel containerStyle={{ marginTop: 20 }}>Title</FormLabel>
+        <FormLabel containerStyle={{ marginTop: 20 }}>
+          Title ({20 - title.length})
+        </FormLabel>
         <FormInput
           value={title}
+          maxLength={20}
           onChangeText={title => this.setState({ title })}
         />
         <ValidationMessage empty={!title} />
