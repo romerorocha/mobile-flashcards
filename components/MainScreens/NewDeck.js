@@ -36,7 +36,7 @@ class NewDeck extends Component {
 
     if (title) {
       addNewDeck(title, icon);
-      this.setState({ title: '', icon: '' });
+      this.setState({ title: '', icon: 'language-javascript' });
       navigation.navigate('DeckEdit', { title });
     }
   };
