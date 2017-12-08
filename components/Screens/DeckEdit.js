@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Text, Button } from 'react-native-elements';
+import { Text, Button, Icon } from 'react-native-elements';
 import { darkBlue, lightBlue } from '../../utils/colors';
 import { connect } from 'react-redux';
 
@@ -13,6 +13,13 @@ class DeckEdit extends Component {
     return deck ? (
       <View style={{ flex: 1 }}>
         <View style={styles.title}>
+          <Icon
+            reverse
+            size={50}
+            name={deck.icon}
+            type="material-community"
+            color={lightBlue}
+          />
           <Text h2 style={styles.text}>
             {deck.title}
           </Text>

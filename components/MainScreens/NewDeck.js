@@ -15,79 +15,65 @@ import ValidationMessage from '../Util/ValidationMessage';
 class NewDeck extends Component {
   state = {
     title: '',
-    icon: ''
+    icon: 'language-javascript',
+    icons: [
+      'language-javascript',
+      'language-csharp',
+      'language-python',
+      'language-cpp',
+      'language-php',
+      'language-html5',
+      'language-css3',
+      'git',
+      'apple',
+      'android'
+    ]
   };
 
   handleSubmit = () => {
     const { title, icon } = this.state;
     const { addNewDeck, navigation } = this.props;
 
-    if (title && icon) {
+    if (title) {
       addNewDeck(title, icon);
       this.setState({ title: '', icon: '' });
       navigation.navigate('DeckEdit', { title });
     }
   };
 
+  pick = icon => {
+    this.setState({ icon });
+  };
+
   render() {
-    const { title, icon } = this.state;
+    const { title, icon, icons } = this.state;
 
     return (
       <View style={{ flex: 1 }}>
         <Text h4 style={styles.text}>
           Create new deck
         </Text>
-        <FormLabel>Title</FormLabel>
+        <FormLabel>Icon</FormLabel>
+        <View style={styles.icons}>
+          {icons.map(item => (
+            <Icon
+              key={item}
+              raised={icon !== item}
+              reverse
+              size={25}
+              name={item}
+              type="material-community"
+              color={icon === item ? darkBlue : lightBlue}
+              onPress={() => this.pick(item)}
+            />
+          ))}
+        </View>
+        <FormLabel containerStyle={{ marginTop: 20 }}>Title</FormLabel>
         <FormInput
           value={title}
           onChangeText={title => this.setState({ title })}
         />
         <ValidationMessage empty={!title} />
-        <FormLabel>Icon</FormLabel>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-around',
-            marginTop: 10
-          }}
-        >
-          <Icon
-            raised={icon !== 'language-javascript'}
-            reverse
-            size={30}
-            name="language-javascript"
-            type="material-community"
-            color={lightBlue}
-            onPress={() => this.setState({ icon: 'language-javascript' })}
-          />
-          <Icon
-            raised={icon !== 'language-php'}
-            reverse
-            size={30}
-            name="language-php"
-            type="material-community"
-            color={lightBlue}
-            onPress={() => this.setState({ icon: 'language-php' })}
-          />
-          <Icon
-            raised={icon !== 'language-csharp'}
-            reverse
-            size={30}
-            name="language-csharp"
-            type="material-community"
-            color={lightBlue}
-            onPress={() => this.setState({ icon: 'language-csharp' })}
-          />
-          <Icon
-            raised={icon !== 'language-python'}
-            reverse
-            size={30}
-            name="language-python"
-            type="material-community"
-            color={lightBlue}
-            onPress={() => this.setState({ icon: 'language-python' })}
-          />
-        </View>
         <Button
           title="Submit"
           buttonStyle={styles.submit}
@@ -108,7 +94,14 @@ const styles = StyleSheet.create({
     color: darkBlue
   },
   submit: {
-    marginTop: 20
+    marginTop: 30
+  },
+  icons: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    marginTop: 10
   }
 });
 
