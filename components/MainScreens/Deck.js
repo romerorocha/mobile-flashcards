@@ -1,6 +1,6 @@
 import React from 'react';
 import { ListItem } from 'react-native-elements';
-import { darkBlue, lighterBlue } from '../../utils/colors';
+import { darkBlue, lightBlue } from '../../utils/colors';
 import { Feather } from '@expo/vector-icons';
 
 const Deck = ({ item, navigation }) => {
@@ -15,7 +15,7 @@ const Deck = ({ item, navigation }) => {
         value: `${cardCount} ${cardCount === 1 ? 'card' : 'cards'}`,
         containerStyle: {
           marginVertical: 14,
-          backgroundColor: lighterBlue
+          backgroundColor: lightBlue
         }
       }}
     />

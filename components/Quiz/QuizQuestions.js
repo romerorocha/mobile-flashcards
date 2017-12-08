@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
-import { Text, Card, Button } from 'react-native-elements';
+import { View, Animated } from 'react-native';
+import { Button } from 'react-native-elements';
 import { darkBlue, lightBlue } from '../../utils/colors';
+import QuestionCard from './QuestionCard';
 
 class QuizQuestions extends Component {
   state = {
-    showAnswer: false
+    showAnswer: false,
+    bounceValue: new Animated.Value(1)
   };
 
   toggleAnswer = () => {
@@ -13,45 +15,40 @@ class QuizQuestions extends Component {
   };
 
   setScore = value => {
+    const { bounceValue } = this.state;
+    Animated.sequence([
+      Animated.timing(bounceValue, { duration: 200, toValue: 1.04 }),
+      Animated.spring(bounceValue, { toValue: 1, friction: 4 })
+    ]).start();
     this.props.setScore(value);
     this.toggleAnswer();
   };
 
   render() {
-    const { showAnswer } = this.state;
+    const { showAnswer, bounceValue } = this.state;
     const { questions, currentIndex } = this.props;
 
     const currentQuestion = questions[currentIndex];
 
     return (
       <View style={{ flex: 1, justifyContent: 'space-around' }}>
-        <View>
+        <Animated.View style={{ transform: [{ scale: bounceValue }] }}>
           {showAnswer ? (
-            <Card title={`Answer`}>
-              <View style={styles.question}>
-                <Text>{currentQuestion.answer}</Text>
-                <TouchableOpacity
-                  style={{ marginTop: 20 }}
-                  onPress={this.toggleAnswer}
-                >
-                  <Text style={styles.showButton}>Show Question</Text>
-                </TouchableOpacity>
-              </View>
-            </Card>
+            <QuestionCard
+              title="Answer"
+              text={currentQuestion.answer}
+              toggle={this.toggleAnswer}
+              buttonText="Show Question"
+            />
           ) : (
-            <Card title={`Question ${currentIndex + 1} of ${questions.length}`}>
-              <View style={styles.question}>
-                <Text>{currentQuestion.question}</Text>
-                <TouchableOpacity
-                  style={{ marginTop: 20 }}
-                  onPress={this.toggleAnswer}
-                >
-                  <Text style={styles.showButton}>Show Answer</Text>
-                </TouchableOpacity>
-              </View>
-            </Card>
+            <QuestionCard
+              title={`Question ${currentIndex + 1} of ${questions.length}`}
+              text={currentQuestion.question}
+              toggle={this.toggleAnswer}
+              buttonText="Show Answer"
+            />
           )}
-        </View>
+        </Animated.View>
         <View>
           <Button
             title="I'm a genius"
@@ -73,17 +70,5 @@ class QuizQuestions extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  button: {
-    marginTop: 20
-  },
-  question: {
-    alignItems: 'center'
-  },
-  showButton: {
-    color: lightBlue
-  }
-});
 
 export default QuizQuestions;
