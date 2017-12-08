@@ -15,14 +15,18 @@ class QuizQuestions extends Component {
   };
 
   setScore = value => {
+    this.animateNewCard();
+    this.props.setScore(value);
+    this.toggleAnswer();
+  };
+
+  animateNewCard() {
     const { bounceValue } = this.state;
     Animated.sequence([
       Animated.timing(bounceValue, { duration: 200, toValue: 1.04 }),
       Animated.spring(bounceValue, { toValue: 1, friction: 4 })
     ]).start();
-    this.props.setScore(value);
-    this.toggleAnswer();
-  };
+  }
 
   render() {
     const { showAnswer, bounceValue } = this.state;

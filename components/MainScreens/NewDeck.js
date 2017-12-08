@@ -53,6 +53,12 @@ class NewDeck extends Component {
         <Text h4 style={styles.text}>
           Create new deck
         </Text>
+        <FormLabel containerStyle={{ marginTop: 20 }}>Title</FormLabel>
+        <FormInput
+          value={title}
+          onChangeText={title => this.setState({ title })}
+        />
+        <ValidationMessage empty={!title} />
         <FormLabel>Icon</FormLabel>
         <View style={styles.icons}>
           {icons.map(item => (
@@ -68,12 +74,6 @@ class NewDeck extends Component {
             />
           ))}
         </View>
-        <FormLabel containerStyle={{ marginTop: 20 }}>Title</FormLabel>
-        <FormInput
-          value={title}
-          onChangeText={title => this.setState({ title })}
-        />
-        <ValidationMessage empty={!title} />
         <Button
           title="Submit"
           buttonStyle={styles.submit}

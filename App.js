@@ -4,8 +4,13 @@ import { Provider } from 'react-redux';
 import configureStore from './utils/configureStore';
 import MainNavigator from './components/Navigation/MainNavigator';
 import { purple } from './utils/colors';
+import { setLocalNotification } from './utils/notificationsAPI';
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
+
   render() {
     return (
       <Provider store={configureStore()}>

@@ -1,17 +1,18 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Button, Text } from 'react-native-elements';
+import { Button, Text, Avatar } from 'react-native-elements';
 import { darkBlue, lightBlue } from '../../utils/colors';
-import ResultImage from './ResultImage';
 
-const QuizResults = ({ score, questionsCount, reset }) => {
+const QuizResults = ({ score, questionsCount, reset, goBack }) => {
   const testPassed = score / questionsCount > 0.5;
   const greetings = testPassed ? 'Congrats!' : 'Oh man...';
+  const chuck = require('../../img/chuck.jpg');
+  const facepalm = require('../../img/facepalm.jpg');
 
   return (
     <View style={{ flex: 1, justifyContent: 'space-around' }}>
       <View style={styles.header}>
-        <ResultImage passed={testPassed} />
+        <Avatar xlarge rounded source={testPassed ? chuck : facepalm} />
         <Text h4 style={styles.text}>
           {greetings}
         </Text>
@@ -29,6 +30,7 @@ const QuizResults = ({ score, questionsCount, reset }) => {
           backgroundColor={darkBlue}
           buttonStyle={styles.button}
           title="Back to Deck"
+          onPress={goBack}
         />
       </View>
     </View>

@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import QuizQuestions from './QuizQuestions';
 import QuizResults from './QuizResults';
+import {
+  clearNotification,
+  setLocalNotification
+} from '../../utils/notificationsAPI';
 
 class Quiz extends Component {
   state = {
@@ -19,6 +23,12 @@ class Quiz extends Component {
     this.setState({ currentIndex: 0, score: 0 });
   };
 
+  backToDeck = () => {
+    const { navigation } = this.props;
+    navigation.goBack();
+    clearNotification().then(setLocalNotification);
+  };
+
   render() {
     const { questions } = this.props.navigation.state.params.deck;
     const { currentIndex, score } = this.state;
@@ -28,6 +38,7 @@ class Quiz extends Component {
         score={score}
         questionsCount={questions.length}
         reset={this.resetQuiz}
+        goBack={this.backToDeck}
       />
     ) : (
       <QuizQuestions
